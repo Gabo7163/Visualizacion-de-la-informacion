@@ -11,10 +11,25 @@
             padding: 20px;
             background-color: #f4f4f4;
         }
+        .container {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            border: 2px solid #333;
+        }
         img {
             max-width: 100%;
             height: auto;
-            border: 2px solid #333;
+            display: block;
+        }
+        .punto-rojo {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: red;
+            cursor: pointer;
+            opacity: 0;
         }
         h1, h2 {
             color: #333;
@@ -28,7 +43,14 @@
 <body>
 
     <h1>Impacto del Consumo de Alcohol en Lesionados por Accidentes Automovilísticos</h1>
-    <img src="prueba1.png" alt="Porcentaje de Lesionados en Accidentes por Consumo de Alcohol">
+    <div class="container">
+        <img src="prueba1.png" alt="Porcentaje de Lesionados en Accidentes por Consumo de Alcohol">
+
+        <div class="punto-rojo" style="top: 250px; left: 100px;" data-porcentaje="7.5"></div>
+        <div class="punto-rojo" style="top: 230px; left: 150px;" data-porcentaje="8.0"></div>
+        <div class="punto-rojo" style="top: 210px; left: 200px;" data-porcentaje="8.5"></div>
+        <div class="punto-rojo" style="top: 190px; left: 250px;" data-porcentaje="9.0"></div>
+    </div>
 
     <div class="descripcion">
         <p><b>ANÁLISIS DEL IMPACTO DEL ALCOHOL EN ACCIDENTES DE TRÁNSITO</b></p>
@@ -57,6 +79,18 @@
     <footer>
         <p>Enlace a la visualización final: <a href="prueba1.png">Ver aquí</a></p>
     </footer>
+
+    <script>
+        const sonido = new Audio('bocina.mp3');
+        document.querySelectorAll('.punto-rojo').forEach(punto => {
+            punto.addEventListener('click', () => {
+                const porcentaje = parseFloat(punto.getAttribute('data-porcentaje'));
+                sonido.volume = porcentaje / 20;
+                sonido.currentTime = 0;
+                sonido.play();
+            });
+        });
+    </script>
 
 </body>
 </html>
