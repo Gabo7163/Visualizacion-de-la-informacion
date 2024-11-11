@@ -11,18 +11,18 @@
             padding: 20px;
             background-color: #f4f4f4;
             margin: 0;
-            overflow: hidden; /* Para evitar barras de desplazamiento innecesarias */
+            overflow: hidden;
         }
         .container {
             position: relative;
             display: inline-block;
             width: 100%;
-            height: 600px; /* Ajusta la altura según el tamaño de tu imagen */
             background-image: url('prueba1.png');
-            background-size: cover; /* Esto asegura que la imagen ocupe todo el contenedor */
+            background-size: contain;
             background-position: center;
+            background-repeat: no-repeat;
             border: 2px solid #333;
-        }
+}
         .punto-rojo {
             position: absolute;
             width: 15px;
@@ -30,7 +30,7 @@
             border-radius: 50%;
             background-color: red;
             cursor: pointer;
-            opacity: 0.7; /* Opcional: Hacemos los puntos un poco translúcidos */
+            opacity: 0.7;
         }
         h1, h2 {
             color: #333;
@@ -45,7 +45,6 @@
 
     <h1>Impacto del Consumo de Alcohol en Lesionados por Accidentes Automovilísticos</h1>
     <div class="container">
-        <!-- Los puntos interactivos sobre la imagen de fondo -->
         <div class="punto-rojo" style="top: 250px; left: 100px;" data-porcentaje="7.5"></div>
         <div class="punto-rojo" style="top: 230px; left: 150px;" data-porcentaje="8.0"></div>
         <div class="punto-rojo" style="top: 210px; left: 200px;" data-porcentaje="8.5"></div>
@@ -91,6 +90,10 @@
                 sonido.volume = volumen;
                 sonido.currentTime = 0;
                 sonido.play();
+                setTimeout(() => {
+                    sonido.pause();
+                    sonido.currentTime = 0;
+                }, 3000);
             });
         });
     </script>
