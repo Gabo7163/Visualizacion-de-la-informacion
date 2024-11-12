@@ -129,6 +129,27 @@
         <h2>Proceso de Evaluación y Retroalimentación</h2>
         <p>La visualización fue revisada por colegas, quienes sugirieron mejoras en el contexto y en la claridad del mensaje para enfatizar el impacto del consumo de alcohol en los accidentes de tránsito. Las observaciones fueron incorporadas para hacer más claro el objetivo de la visualización.</p>
     </div>
+    <footer>
+        <p>Enlace a la visualización final: <a href="prueba1.png">Ver aquí</a></p>
+    </footer>
 
+    <script>
+        const sonido = new Audio('bocina.mp3');
+    
+        document.querySelectorAll('.punto-rojo').forEach(punto => {
+            punto.addEventListener('click', () => {
+                const porcentaje = parseFloat(punto.getAttribute('data-porcentaje'));
+                const volumen = Math.min(Math.max(porcentaje / 100, 0), 1);
+                sonido.volume = volumen;
+                sonido.currentTime = 0;
+                sonido.play();
+    
+                setTimeout(() => {
+                    sonido.pause();
+                    sonido.currentTime = 0;
+                }, 3000);
+            });
+        });
+    </script>
 </body>
 </html>
